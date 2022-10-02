@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+
+  db:
+    container_name: db
+    image: postgres:latest
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      eduright-network:
+        ipv4_address: "172.12.0.2"
+
+  backend:
+    container_name: backend
+    volumes:
+      - staticfiles:/app/staticfiles
+      - mediafiles:/app/media
+    build: ./backend
+    ports:
+      - "8080:8080"
+    networks:
+      eduright-network:
+        ipv4_address: "172.12.0.4"
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - staticfiles:/static
+      - mediafiles:/media
+    ports:
+      - "80:80"
+    networks:
+      eduright-network:
+        ipv4_address: "172.12.0.3"
+    depends_on:
+      - backend
+
+networks:
+  eduright-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.12.0.0/16"
+
+volumes:
+    dbdata:
+    staticfiles:
+      name: staticfiles
+    mediafiles:
+      name: mediafiles
