@@ -8,12 +8,10 @@ on:
 
 jobs:
   build:
-
-    # runs-on: ubuntu-latest
     runs-on: edu-instance
 
+    # git action checkout
     steps:
-    - name: Setting Environment
-      run: |
-        echo "hello"
+      - uses: actions/checkout@v2
+
     
