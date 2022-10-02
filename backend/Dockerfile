@@ -1,4 +1,4 @@
-FROM python:latest
+FROM python:alpine3.16
 
 RUN apt update
 RUN pip install --upgrade pip
