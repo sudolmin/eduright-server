@@ -16,8 +16,8 @@ jobs:
 
       - name: Save Environment Variables
         run: |
-          echo ${{ secrets.POSTGRES_ENV }} >> postgres.env
-          echo ${{ secrets.DJANGO_ENV }} >> backend.env
+          echo "${{ secrets.POSTGRES_ENV }}" >> postgres.env
+          echo "${{ secrets.DJANGO_ENV }}" >> backend.env
     
       - name: Build and Run Docker Containers
         run: |
