@@ -148,6 +148,7 @@ def checksumData(request):
         for obj in categoryObjs:
             catedata += str(obj.datahash)
 
+    banString = ""
     for banEle in SlidingBanner.objects.filter(hide=False):
         banString = str(banEle.hide)+str(banEle.rank)+str(banEle.slug) + \
             str(banEle.image.url)+str(banEle.plainShow) + \
