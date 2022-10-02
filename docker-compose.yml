@@ -6,6 +6,8 @@ services:
     image: postgres:15rc1-alpine3.16
     volumes:
       - dbdata:/var/lib/postgresql/data
+    env_file:
+      - ./postgres.env
     ports:
       - "5432:5432"
     networks:
@@ -17,6 +19,9 @@ services:
     volumes:
       - staticfiles:/app/staticfiles
       - mediafiles:/app/media
+    env_file:
+      - ./postgres.env
+      - ./backend.env
     build: ./backend
     ports:
       - "8080:8080"

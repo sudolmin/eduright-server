@@ -14,4 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+    steps:
+      - name: Save Environment Variables
+        run: |
+          echo ${{ secrets.POSTGRES_ENV }} >> postgres.env
+          echo ${{ secrets.DJANGO_ENV }} >> backend.env
     
+    steps:
+      - name: Build and Run Docker Containers
+        run: |
+          docker-compose up -d --build
