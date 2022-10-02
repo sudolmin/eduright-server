@@ -54,6 +54,7 @@ networks:
 
 volumes:
     dbdata:
+      name: dbdata
     staticfiles:
       name: staticfiles
     mediafiles:
