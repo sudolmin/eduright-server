@@ -30,7 +30,7 @@ services:
     volumes:
       - staticfiles:/static
       - mediafiles:/media
-      - ./nginx/default.conf:/etc/nginx/default.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
     networks:
